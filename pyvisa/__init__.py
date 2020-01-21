@@ -19,7 +19,7 @@ import pkg_resources
 from . import compat
 logger = logging.getLogger('pyvisa')
 logger.addHandler(compat.NullHandler())
-
+print('!pyvisa!')
 
 def log_to_screen(level=logging.DEBUG):
     log_to_stream(None, level) # sys.stderr by default

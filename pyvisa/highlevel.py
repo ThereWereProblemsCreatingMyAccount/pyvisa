@@ -698,6 +698,7 @@ class VisaLibraryBase(object):
 
         :param query: regular expression used to match devices.
         """
+        print('list_resources VisaLibraryBase')
         raise NotImplementedError
 
     def lock(self, session, lock_type, timeout, requested_key=None):
@@ -1347,7 +1348,12 @@ class VisaLibraryBase(object):
         :rtype: - bytes
                 - :class:`pyvisa.constants.StatusCode`
         """
-        raise NotImplementedError
+        try:
+            sess = self.sessions[session]
+        except KeyError:
+            return constants.StatusCode.error_invalid_object
+
+        return sess.control_transfer(request_type_bitmap_field, request_id, request_value, index, length)
 
     def usb_control_out(self, session, request_type_bitmap_field, request_id, request_value,
                         index, data=""):
@@ -1683,7 +1689,7 @@ class ResourceManager(object):
         :param query: a VISA Resource Regular Expression used to match devices.
 
         """
-
+        print('list_resources ResourceManager')
         return self.visalib.list_resources(self.session, query)
 
     def list_resources_info(self, query='?*::INSTR'):
