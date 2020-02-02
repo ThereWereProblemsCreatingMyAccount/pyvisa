@@ -1375,7 +1375,8 @@ class VisaLibraryBase(object):
         except KeyError:
             return constants.StatusCode.error_invalid_object
 
-        return  sess.control_transfer(request_type_bitmap_field, request_id, request_value, index, data)
+        sess.control_transfer(request_type_bitmap_field, request_id, request_value, index, data)
+        return constants.StatusCode(0)
 
     def vxi_command_query(self, session, mode, command):
         """Sends the device a miscellaneous command or query and/or retrieves the response to a previous query.
