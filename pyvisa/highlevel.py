@@ -698,7 +698,6 @@ class VisaLibraryBase(object):
 
         :param query: regular expression used to match devices.
         """
-        print('list_resources VisaLibraryBase')
         raise NotImplementedError
 
     def lock(self, session, lock_type, timeout, requested_key=None):
@@ -1694,7 +1693,6 @@ class ResourceManager(object):
         :param query: a VISA Resource Regular Expression used to match devices.
 
         """
-        print('list_resources ResourceManager')
         return self.visalib.list_resources(self.session, query)
 
     def list_resources_info(self, query='?*::INSTR'):

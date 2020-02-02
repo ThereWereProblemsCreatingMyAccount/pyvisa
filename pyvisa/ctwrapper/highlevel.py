@@ -242,8 +242,6 @@ class IVIVisaLibrary(highlevel.VisaLibraryBase):
 
         :param query: a VISA Resource Regular Expression used to match devices.
         """
-        print('list_resources ctwrapper')
-
         resources = []
 
         try:
